@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dependency Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+            display: inline-block;
+            text-align: left;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px;
+            background: lightgray;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px;
+            margin: 10px;
+            background: green;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dependency Report for {{ filename }}</h2>
+        
+        <h3>Uploaded Dependencies:</h3>
+        <ul>
+            {% for dep in dependencies %}
+                <li>{{ dep }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Outdated Libraries:</h3>
+        {% if outdated_libs %}
+            <ul>
+                {% for outdated in outdated_libs %}
+                    <li>{{ outdated }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>All libraries are up to date.</p>
+        {% endif %}
+
+        <h3>Illegal Libraries:</h3>
+        {% if illegal_libs %}
+            <ul>
+                {% for illegal in illegal_libs %}
+                    <li>{{ illegal }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>All libraries are legally allowed.</p>
+        {% endif %}
+
+        <a class="btn" href="/">Upload another file</a>
+        <a class="btn" href="{{ url_for('download_csv', filename=filename) }}">Download CSV</a>
+        <a class="btn" href="{{ url_for('download_json', filename=filename) }}">Download JSON</a>
+    </div>
+</body>
+</html>

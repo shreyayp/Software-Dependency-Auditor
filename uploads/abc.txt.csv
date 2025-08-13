@@ -1,0 +1,5 @@
+Dependency,Category
+Flask==3.1.0,Uploaded
+requests==2.32.3,Uploaded
+numpy==2.2.3,Uploaded
+pandas==2.2.3,Uploaded
